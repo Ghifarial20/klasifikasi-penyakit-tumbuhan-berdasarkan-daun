@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun May 31 13:28:26 2020
-
-@author: fachr
-"""
 import numpy as np
 import glob
 from sklearn.model_selection import train_test_split
@@ -174,8 +168,7 @@ for filename in glob.glob("Datasets/Virus/*jpg"):
     dst_dilate3 = cv.dilate(dst_erosi2, se_3, iterations = 1)
             
     res = cv.bitwise_and(im,im, mask= dst_dilate3)
-            
-    #image = kontras_red(im)
+          
     b,g,r = cv.split(res)
     rgb = cv.merge([r,g,b])
     
@@ -191,29 +184,6 @@ for filename in glob.glob("Datasets/Virus/*jpg"):
     gmbr = rgb.flatten()
     training.append(gmbr)
     responses.append(5)
-
-'''
-0.5 200 = 76.67%
-0.5 250 = 70.83
-0.5 150 = 78.33
-0.5 100 = 67.50
-0.5 125 = 75.00
-0.5 175 = 71.67
-0.5 165 = 73.33
-0.5 160 = 70.00
-
-0.6 150 = 70.83
-0.4 150 = 75.00
-0.55 150 = 73.48
-0.8 150 = 66.15
-
-0.5 500 = 69.17
-0.5 800 = 67.50
-0.5 222 = 70.83
-0.5 555 = 71.67
-0.5 666 = 66.67
-0.5 999 = 71.67
-'''
 
 #membagi data -> training dan test
 x_train, x_test, y_train, y_test = train_test_split(training, responses, test_size = 0.5, random_state = 150)
